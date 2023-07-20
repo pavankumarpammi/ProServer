@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="css/4web.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="#">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Occupation</span>
+            <input type="text" placeholder="Enter your work" required>
+          </div>
+          <div class="input-box">
+            <span class="details"> Gender</span>
+            <select required>
+                      <option disabled selected>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Place</span>
+             <div class="row"><input type="text" name="" id="input-box" placeholder="Search place" autocomplete="off" required></div>
+               <div class="result-box"></div>
+          </div>
+          <div class="input-box">
+            <span class="details">State</span>
+            <select required>
+              <option disabled selected>Select state</option>
+                        <option>Andhra Pradesh</option>
+                        <option>Telangana</option>
+    </select>
+          </div>
+            <div class="input-box">
+            <span class="details">District</span>
+            <select required>
+              <option disabled selected>Select district</option>
+                        <option>Visakhapatnam</option>
+                        <option>Krishna</option>
+                        <option>Guntur</option>
+                        <option>Chittoor</option>
+                        <option>Anantapur</option>
+                        <option>Nellore</option>
+                        <option>West Godavari</option>
+                        <option>Konaseema</option>
+                        <option>Kakinada</option>
+                        <option>Srikakulam</option>
+                        <option>Tirupati</option>
+                        <option>East Godavari</option>
+    </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Pincode</span>
+            <input type="text" placeholder="Enter pincode" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" placeholder="Enter your address" required>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+   <!-- <script src="script4.js"> -->
+   <script>
+   let availablekeywords = [
+       'Vizag',
+       'Kakinada',
+       'Rajahmundry',
+       'Surampalem',
+       'Draksharamam',
+       'Vijayawada',
+       'Amalapuram',
+       'Srikakulam',
+       'Tirupati',
+       'Kadapa',
+       'Mandapeta',
+       'Pithapuram',
+       'Kathipudi',
+       'Samarlakota',
+       'Thiruvananthapuram'
+   ];
+
+   const resultBox = document.querySelector(".result-box");
+   const inputBox = document.getElementById("input-box");
+
+   inputBox.onkeyup = function(){
+       let result = [];
+       let input = inputBox.value;
+       if (input.length){
+           result = availablekeywords.filter((keyword)=>{
+             return keyword.toLowerCase().includes(input.toLowerCase());
+           });
+           console.log(result)
+       }
+       display(result);
+
+       if(!result.length){
+           resultBox.innerHTML='';
+       }
+   }
+   function display(result){
+       const content = result.map((list)=>{
+           return "<li onclick=selectInput(this)>" + list + "</li>";
+       });
+
+       resultBox.innerHTML = "<ul>" + content.join('') + "</ul>";
+   }
+
+   function selectInput(list){
+       inputBox.value = list.innerHTML;
+       resultBox.innerHTML='';
+   }
+
+
+
+
+
+
+
+   </script>
+</body>
+</html>
